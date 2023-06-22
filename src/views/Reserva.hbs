@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f4f4f4;
+      padding: 20px;
+    }
+
+    h1 {
+      text-align: center;
+    }
+
+    form {
+      max-width: 400px;
+      margin: 0 auto;
+      background-color: #ffffff;
+      padding: 20px;
+      border-radius: 5px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    label {
+      display: block;
+      margin-bottom: 10px;
+      font-weight: bold;
+    }
+
+    input[type="text"],
+    select {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      box-sizing: border-box;
+      margin-bottom: 20px;
+    }
+
+    input[type="button"] {
+      background-color: #4caf50;
+      color: #ffffff;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    input[type="button"]:hover {
+      background-color: #45a049;
+    }
+
+    textarea {
+      width: 100%;
+      height: 100px;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      resize: none;
+    }
+  </style>
+  <script>
+    function mostrarMaterias() {
+      var carrera = document.getElementById("carrera").value;
+      var semestre = document.getElementById("semestre").value;
+      var materias = document.getElementById("materias");
+
+      materias.innerHTML = ""; // Limpiar las opciones anteriores
+
+      if (carrera === "Ingeniería Electrónica") {
+        if (semestre === "Primero") {
+          materias.innerHTML += '<option value="Calculo I">Calculo I</option>';
+          materias.innerHTML += '<option value="Introducción a la Electrónica">Introducción a la Electrónica</option>';
+          materias.innerHTML += '<option value="Fundamentos de informática y programación">Fundamentos de informática y programación</option>';
+        } else if (semestre === "Segundo") {
+          materias.innerHTML += '<option value="Calculo II">Calculo II</option>';
+          materias.innerHTML += '<option value="Circuitos I">Circuitos I</option>';
+          materias.innerHTML += '<option value="Algoritmia y Programación">Algoritmia y Programación</option>';
+        } else if (semestre === "Tercero") {
+          materias.innerHTML += '<option value="Calculo III">Calculo III</option>';
+          materias.innerHTML += '<option value="Circuitos II">Circuitos II</option>';
+          materias.innerHTML += '<option value="Electrónica I">Electrónica I</option>';
+        }
+      } else if (carrera === "Economía") {
+        if (semestre === "Primero") {
+          materias.innerHTML += '<option value="Matemáticas I">Matemáticas I</option>';
+          materias.innerHTML += '<option value="Introducción a la Economía">Introducción a la Economía</option>';
+          materias.innerHTML += '<option value="Historia del pensamiento Económico I">Historia del pensamiento Económico I</option>';
+        } else if (semestre === "Segundo") {
+          materias.innerHTML += '<option value="Matemáticas II">Matemáticas II</option>';
+          materias.innerHTML += '<option value="Contabilidad General y de Costos">Contabilidad General y de Costos</option>';
+          materias.innerHTML += '<option value="Microeconomía I">Microeconomía I</option>';
+        } else if (semestre === "Tercero") {
+          materias.innerHTML += '<option value="Matemáticas III">Matemáticas III</option>';
+          materias.innerHTML += '<option value="Microeconomía II">Microeconomía II</option>';
+          materias.innerHTML += '<option value="Economía Colombiana">Economía Colombiana</option>';
+        }
+      } else if (carrera === "Fonoaudiología") {
+        if (semestre === "Primero") {
+          materias.innerHTML += '<option value="Biología celular y molecular">Biología celular y molecular</option>';
+          materias.innerHTML += '<option value="Psicología General y Evolutiva">Psicología General y Evolutiva</option>';
+          materias.innerHTML += '<option value="Introducción a la Fonoaudiología">Introducción a la Fonoaudiología</option>';
+        } else if (semestre === "Segundo") {
+          materias.innerHTML += '<option value="Morfofisiología cabeza y cuello">Morfofisiología cabeza y cuello</option>';
+          materias.innerHTML += '<option value="Problemas de aprendizaje I">Problemas de aprendizaje I</option>';
+          materias.innerHTML += '<option value="Socioantropología">Socioantropología</option>';
+        } else if (semestre === "Tercero") {
+          materias.innerHTML += '<option value="Morfofisiología del sistema nervioso">Morfofisiología del sistema nervioso</option>';
+          materias.innerHTML += '<option value="Patología O.R.L">Patología O.R.L</option>';
+          materias.innerHTML += '<option value="Problemas de aprendizaje II">Problemas de aprendizaje II</option>';
+        }
+      }
+    }
+
+    function mostrarDatos() {
+      var nombre = document.getElementById("nombre").value;
+      var identificacion = document.getElementById("identificacion").value;
+      var carrera = document.getElementById("carrera").value;
+      var semestre = document.getElementById("semestre").value;
+      var materia = document.getElementById("materias").value;
+      var salon = obtenerSalon(materia);
+      var sede = obtenerSede(carrera);
+
+      var resultado = "Nombre: " + nombre + "\n";
+      resultado += "Identificación: " + identificacion + "\n";
+      resultado += "Carrera: " + carrera + "\n";
+      resultado += "Semestre: " + semestre + "\n";
+      resultado += "Materia: " + materia + "\n";
+      resultado += "Salón: " + salon + "\n";
+      resultado += "Sede: " + sede;
+
+      document.getElementById("resultado").value = resultado;
+    }
+
+    function obtenerSalon(materia) {
+      switch (materia) {
+        case "Calculo I":
+          return "B1-102";
+        case "Introducción a la Electrónica":
+          return "B2-101";
+        case "Fundamentos de informática y programación":
+          return "B1-201";
+        case "Calculo II":
+          return "B2-203";
+        case "Circuitos I":
+          return "B2-201";
+        case "Algoritmia y Programación":
+          return "Genesis I";
+        case "Calculo III":
+          return "B2-202";
+        case "Circuitos II":
+          return "B4-203";
+        case "Electrónica I":
+          return "I-101 - Laboratorio de Electrónica";
+        case "Matemáticas I":
+          return "B1-202";
+        case "Introducción a la Economía":
+          return "B3-101";
+        case "Historia del pensamiento Económico I":
+          return "B3-204";
+        case "Matemáticas II":
+          return "B2-205";
+        case "Contabilidad General y de Costos":
+          return "B5-103";
+        case "Microeconomía I":
+          return "B3-202";
+        case "Matemáticas III":
+          return "B2-204";
+        case "Microeconomía II":
+          return "B3-105";
+        case "Economía Colombiana":
+          return "H-102";
+        case "Biología celular y molecular":
+          return "201";
+        case "Psicología General y Evolutiva":
+          return "202";
+        case "Introducción a la Fonoaudiología":
+          return "301";
+        case "Morfofisiología cabeza y cuello":
+          return "302";
+        case "Problemas de aprendizaje I":
+          return "203";
+        case "Socioantropología":
+          return "303";
+        case "Morfofisiología del sistema nervioso":
+          return "Laboratorio de anatomía";
+        case "Patología O.R.L":
+          return "304";
+        case "Problemas de aprendizaje II":
+          return "305";
+        default:
+          return "";
+      }
+    }
+
+    function obtenerSede(carrera) {
+      if (carrera === "Ingeniería Electrónica" || carrera === "Economía") {
+        return "Puerta Roja";
+      } else if (carrera === "Fonoaudiología") {
+        return "Puerta Blanca";
+      } else {
+        return "";
+      }
+    }
+  </script>
+</head>
+<body>
+  <h1>Consulta tu salón:</h1>
+  <form>
+    <label for="nombre">Nombre de docente:</label>
+    <input type="text" id="nombre" required>
+    
+    <label for="identificacion">Número de identificación:</label>
+    <input type="text" id="identificacion" required>
+    
+    <label for="carrera">Carrera:</label>
+    <select id="carrera" onchange="mostrarMaterias()" required>
+      <option value="">Seleccione una carrera</option>
+      <option value="Ingeniería Electrónica">Ingeniería Electrónica</option>
+      <option value="Economía">Economía</option>
+      <option value="Fonoaudiología">Fonoaudiología</option>
+    </select>
+    
+    <label for="semestre">Semestre:</label>
+    <select id="semestre" onchange="mostrarMaterias()" required>
+      <option value="">Seleccione un semestre</option>
+      <option value="Primero">Primero</option>
+      <option value="Segundo">Segundo</option>
+      <option value="Tercero">Tercero</option>
+    </select>
+    
+    <label for="materias">Materia:</label>
+    <select id="materias" required>
+      <option value="">Seleccione una materia</option>
+    </select>
+    
+    <input type="button" value="Mostrar Datos" onclick="mostrarDatos()">
+    
+    <textarea id="resultado" readonly></textarea>
+  </form>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
